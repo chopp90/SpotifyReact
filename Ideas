@@ -1,0 +1,23 @@
+* User Info Page
+* Generate Playlist based on a list of artists ( get artists by songs )
+*   * Top5 / Newest Releases / Provide number?
+* Shuffle existing Playlist
+*   * Just randomly 
+*   *   * provide random value to position and sort? 
+*   * Check against criterias and reshuffle if failed. Prevent deadloop! ( failamount or something )   ==> Make List of crieria-checks as possible input    || Criteria could be a value instead of a hard-no and total Criteria fail points could be used as fail-condition
+*   *   * eg. no 2 songs of same artist back to back. 
+*   *   * Check what data we have on songs, maybe genre/vocal-gender/tempo/etc. can be used aswell. 
+*   *   * Play around with shit! Keep various attempts,
+
+Other stuff. 
+Devided: Not doing any BE, as it would mostly be an API Gateway with basic User-stuff.
+Save LoginData/API-Key somewhere? locale-storage?
+Save temporary shuffled playlists and only send update when happy?
+Provide draggable List for playlists?
+Make Different Criterias selectable on UI instead of hardcoded?
+
+Wierd special Idea: Use some sort of Machine Learning to shuffle list against criterias. ( value instead of hard-no ) And progress from there!
+Do some funny Animation-stuff / slightly wierd css-stuff?
+*   Animations in general, Transitions, box-shadow?, gradient
+*   Wierd mouse-area stuff i saw in a short video somewhere?
+* Make a FU-Button?
