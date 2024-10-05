@@ -2,14 +2,17 @@ import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } 
 import './App.css';
 import DemoViteReact from './pages/DemoViteReact';
 import Empty from './pages/Empty';
-import HeaderNavigation from './Components/HeaderNavigation';
+import DefaultLayout from './layouts/DefaultLayout';
+import Profile from './pages/Profile';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path="/" element={< HeaderNavigation />}>
+    <Route path="/" element={< DefaultLayout />}>
       {/* Define child routes here */}
       <Route index element={<DemoViteReact />} />
+      <Route path="/demo" element={<DemoViteReact />} />
       <Route path="/empty" element={<Empty />} />
+      <Route path="/profile" element={<Profile />} />
     </Route>
   )
 );
