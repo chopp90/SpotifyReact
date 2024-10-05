@@ -26,3 +26,4 @@ dist-ssr
 # own
 *Ideas.txt
 TODO
+*src/data/*
