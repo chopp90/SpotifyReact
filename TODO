@@ -1,0 +1,16 @@
+Rough steps:
+
+# Set up basic routing/layout etc.
+# connect to spotify api.  ( Token/Auth hardcoded first?  DONT PUSH / gitignore )
+# Make types for the needed classes/types.  EG. Playlist, Account, extend Playlist with customOrder?  ==> testing @types/spotify-api for now
+Do something with expired auth token? ... get other token, first attempt is not for personal data!
+Check Login state at home and redirect if expired?
+Improve routing ( base app.tsx and headernavigation ) to read pages folder and do stuff with it automatically?
+Loading/errorstates?
+Make Service-class or something similiar to handle all the API stuff
+Make a small Artist/Track Top view profile page
+Make a Song-Display Component
+Make a Playlist Component to display Song-Displays?
+Make Song-Display Drag&Drop for order in Playlist?
+Make functions to shuffle/sort/order playlist
+Make funtion to generate playlist based on songs in current playlist ( eg. top 5 + newest 2 songs for each artist that has a song in the list )

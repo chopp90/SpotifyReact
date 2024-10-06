@@ -8,8 +8,8 @@ export type NavigationItem = {
 
 function HeaderNavigation() {
   const navigationItems : Array<NavigationItem> = [
-    { name: 'Home', url: '/' },
-    { name: 'Empty', url: 'Empty' },
+    { name: 'Home', url: 'Home' },
+    { name: 'Login', url: 'Login' },
     { name: 'profile', url: 'Profile' },
     { name: 'Demo', url: '/demo' }
   ]

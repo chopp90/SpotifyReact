@@ -24,6 +24,6 @@ dist-ssr
 *.sw?
 
 # own
-*Ideas.txt
-TODO
+# Ideas
+# TODO
 *src/data/*

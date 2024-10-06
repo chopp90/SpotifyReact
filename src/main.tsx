@@ -4,7 +4,8 @@ import App from './App.tsx'
 import './index.css'
 
 createRoot(document.getElementById('root')!).render(
-  <StrictMode>
+  //TODO: Test strict mode on again with new BE-Cors-Setting
+  // <StrictMode>
     <App />
-  </StrictMode>,
+  // </StrictMode>,
 )

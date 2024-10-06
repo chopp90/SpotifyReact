@@ -1,17 +1,22 @@
 // src/services/apiService.ts
 import axios, { AxiosInstance, AxiosResponse } from 'axios';
 
-const baseURL = 'https://api.spotify.com'
+const baseURL = 'https://api.spotify.com/v1' // TODO: are there other versions? or can i leave v1?
+//TODO: make a trim function as fallback for '/' stuff?
 export class SpotifyApiService {
   private api: AxiosInstance;
     
   constructor() {
+    const accessToken = localStorage.getItem('accessToken')
+    if(!accessToken){
+      console.warn('Starting Spotify Api Service without accessToken')
+    }
+
     this.api = axios.create({
       baseURL: baseURL,
       headers: {
         'Content-Type': 'application/json',
-        // 'Content-Type': 'application/x-www-form-urlencoded',
-
+        'Authorization': `Bearer ${accessToken}`
       },
     });
   }
