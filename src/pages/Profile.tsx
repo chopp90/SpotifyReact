@@ -1,23 +1,34 @@
+import { useState } from "react"
 import { SpotifyApiService } from "../services/SpotifyApiService"
+import { SpotifyArtistCard, SpotifyArtistList } from "../components"
 
 
 const apiService = new SpotifyApiService()
 
-async function onClick () {
- 
-  const response = await apiService.get('/me')
-  console.log("response: ",response)
-  }
-async function onClick2 () {
-  const response = await apiService.get('/me/top/artists', {
-    time_range: 'medium_term',
-    limit:10,
-    offset:0,
-  })
-  console.log("response: ",response)
-  }
-
 function Profile() {
+const [artists,setArtists] = useState<Array<SpotifyApi.ArtistObjectFull>>([])
+
+
+
+  async function onClick () {
+ 
+    const response = await apiService.get('/me')
+    console.log("response: ",response)
+    }
+  async function onClick2 () {
+    const response = await apiService.get('/me/top/artists', {
+      time_range: 'medium_term',
+      limit:50,
+      offset:0,
+    }) as SpotifyApi.UsersTopArtistsResponse
+    console.log("response: ",response)
+    if(response && response.items){
+  
+      setArtists(response.items)
+    }
+    }
+
+
 
   return (
     <>
@@ -28,6 +39,7 @@ function Profile() {
       <button onClick={onClick2}>
         So TopArtists!
       </button>
+      <SpotifyArtistList artists={artists} />
     </div>
     </>
   )

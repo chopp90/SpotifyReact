@@ -1,0 +1,40 @@
+.spotify-artist-card{
+    display: flex;
+    flex-direction: row;
+    border: 2px solid grey;
+    margin: 1rem;
+    // height: 100%;
+    &__image {
+        height: 120px;
+        width: 120px;
+    }
+
+    &__list {
+        width: 100%;
+        &--item, &--item-v2 {
+            text-align: left;
+        }
+
+        &--item-v2 {
+            padding-left: 1rem;
+            color:black;
+            font-weight: bold;
+            text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
+            // font-size: small;
+            // // some playing around with difference. But can't quite get it to look good, eg. on Babymetal
+            // color: white;
+            // font-weight: 500;
+            // text-align: left;
+            // mix-blend-mode: difference;
+            // text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+        }
+        &--name-v2 {
+            width:100%;
+            padding-left:0px;
+            text-align: center;
+            font-size: x-large;
+            
+            margin-bottom: 10px;
+        }
+    }
+}

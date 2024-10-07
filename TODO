@@ -9,6 +9,8 @@ Improve routing ( base app.tsx and headernavigation ) to read pages folder and d
 Loading/errorstates?
 Make Service-class or something similiar to handle all the API stuff
 Make a small Artist/Track Top view profile page
+    => improve Artist: Make a button to switch between short/medium/long_term. (Cache?) Fetch more on maxScroll? 
+        => adjust layout? kind of want a proper flex again, or could keep grid but center and adjust images a bit ( right is cut off )
 Make a Song-Display Component
 Make a Playlist Component to display Song-Displays?
 Make Song-Display Drag&Drop for order in Playlist?

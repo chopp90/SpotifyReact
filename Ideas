@@ -1,4 +1,6 @@
 * User Info Page
+* * Artist/Track: Display:
+* * * Instead of picture:left, data:right, try. picture background with font-color adjusted text over
 * Generate Playlist based on a list of artists ( get artists by songs )
 *   * Top5 / Newest Releases / Provide number?
 * Shuffle existing Playlist

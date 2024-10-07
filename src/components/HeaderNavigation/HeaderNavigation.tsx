@@ -1,4 +1,3 @@
-import { Outlet } from "react-router-dom"
 import './HeaderNavigation.scss';
 
 export type NavigationItem = {
@@ -15,7 +14,7 @@ function HeaderNavigation() {
   ]
   return (
     <>
-      <div className="header-navigation__container">
+      <div className="header-navigation">
         { navigationItems.map((item,index)=> (
             <div key={index} className="header-navigation__item">
               <a href={item.url}>

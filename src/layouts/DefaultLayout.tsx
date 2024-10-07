@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom"
-import HeaderNavigation from "../components/HeaderNavigation"
 import './DefaultLayout.scss'
+import { HeaderNavigation } from "../components"
 
 function defaultLayout() {
 
