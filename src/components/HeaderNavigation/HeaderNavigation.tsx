@@ -10,6 +10,8 @@ function HeaderNavigation() {
     { name: 'Home', url: 'Home' },
     { name: 'Login', url: 'Login' },
     { name: 'profile', url: 'Profile' },
+    { name: 'topArtists', url: 'TopArtists' },
+    { name: 'topTracks', url: 'TopTracks' },
     { name: 'Demo', url: '/demo' }
   ]
   return (

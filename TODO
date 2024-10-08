@@ -16,3 +16,6 @@ Make a Playlist Component to display Song-Displays?
 Make Song-Display Drag&Drop for order in Playlist?
 Make functions to shuffle/sort/order playlist
 Make funtion to generate playlist based on songs in current playlist ( eg. top 5 + newest 2 songs for each artist that has a song in the list )
+Combine TopArtist and TopTrack somehow into a more flexible component/page with something like type: artist | track?   => alot of extra work for kind of no gain, just some thought-process!
+TopTrackList: RightClick => Queue song!
+TopArtistList: Do something with clicks? => do <a href> like tracks for now

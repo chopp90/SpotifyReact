@@ -1,10 +1,21 @@
-.spotify-artist-card{
+.spotify-track-card{
+    display: flex;
+    flex-direction: row;
     margin: 0.5rem;
-    min-height: 200px;
+    // width: auto;
+    // height: auto;
     resize:both;
     border: 2px solid grey;
+   
 
-    &__font {
+    &__image {
+        width: 100px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    &__index {
+        font-size: xxx-large;
         color:black;
         font-weight: bold;
         text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
@@ -19,33 +30,26 @@
         // text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
     }
     &__list {
+        background: linear-gradient(
+            140deg,
+            purple 0%,
+            blue 20%,
+            darkblue 40%,
+            purple 80%,
+            grey 100%,
+            );
+        color: white;
         width: 100%;
+        padding-left:0.5rem;
+        text-align: left;
 
-        &--title{            
-            width:100%;
-            padding-left:0px;
-            font-size: x-large;
-            margin-bottom: 10px;
-            display: flex;
-            flex-direction: row;
-
-            &__index{
-                padding-left: 1rem;
-                text-align: left;
-            }
-            &__name{
-                width:100%;
-                text-align: center;
-            }
-        }
-
-        &--item, &--item-v2 {
-            text-align: left;
-        }
-
-        &--item {
-            padding-left: 1rem;            
+        &--title{      
+            font-weight: bold;
         }
         
+        &--artists{
+            font-size: small;
+            font-weight: 400;
+        }
     }
 }

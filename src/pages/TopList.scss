@@ -1,0 +1,9 @@
+
+.spotify-top-list{
+    // display: flex;
+    // flex-direction: row;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    max-width: 1000px;
+    // grid-auto-rows: 320px;
+}

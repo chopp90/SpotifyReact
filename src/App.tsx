@@ -5,6 +5,8 @@ import Profile from './pages/Profile';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Callback from './pages/Callback';
+import TopArtists from './pages/TopArtists';
+import TopTracks from './pages/TopTracks';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -15,6 +17,8 @@ const router = createBrowserRouter(
       <Route path="/callback" element={<Callback />} />
       <Route path="/login" element={<Login />} />
       <Route path="/profile" element={<Profile />} />
+      <Route path="/topArtists" element={<TopArtists />} />
+      <Route path="/topTracks" element={<TopTracks />} />
     </Route>
   )
 );
