@@ -7,6 +7,13 @@ import Login from './pages/Login';
 import Callback from './pages/Callback';
 import TopArtists from './pages/TopArtists';
 import TopTracks from './pages/TopTracks';
+import { createContext, useState } from 'react';
+import Playlist from './pages/Playlist';
+
+// export const UserContext = createContext<[
+//    SpotifyApi.UserObjectPrivate|null,
+//     React.Dispatch<React.SetStateAction<SpotifyApi.UserObjectPrivate | null > > 
+//  ] | undefined >(undefined)
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -19,13 +26,20 @@ const router = createBrowserRouter(
       <Route path="/profile" element={<Profile />} />
       <Route path="/topArtists" element={<TopArtists />} />
       <Route path="/topTracks" element={<TopTracks />} />
+      <Route path="/playlist" element={<Playlist />} />
     </Route>
   )
 );
 
 function App() {
+  // const [user, setUser] = useState<SpotifyApi.UserObjectPrivate | null>(null);
+  // const userState = useState<SpotifyApi.UserObjectPrivate | null>(null);
+  
   return (
-    <RouterProvider router={router} />
+    // <UserContext.Provider value={{ user, setUser }}>
+    // <UserContext.Provider value={userState}>
+      <RouterProvider router={router} />
+    // </UserContext.Provider>
   );
 }
 

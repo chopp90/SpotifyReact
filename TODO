@@ -3,6 +3,7 @@ Rough steps:
 # Set up basic routing/layout etc.
 # connect to spotify api.  ( Token/Auth hardcoded first?  DONT PUSH / gitignore )
 # Make types for the needed classes/types.  EG. Playlist, Account, extend Playlist with customOrder?  ==> testing @types/spotify-api for now
+# Idea for "Older Goldies Track-Finding": Remove short_term and medium_term songs from long_term and show the leftovers. Maybe remove most common recent artists?  ==> done ahead of shuffle
 Do something with expired auth token? ... get other token, first attempt is not for personal data!
 Check Login state at home and redirect if expired?
 Improve routing ( base app.tsx and headernavigation ) to read pages folder and do stuff with it automatically?
@@ -18,4 +19,9 @@ Make functions to shuffle/sort/order playlist
 Make funtion to generate playlist based on songs in current playlist ( eg. top 5 + newest 2 songs for each artist that has a song in the list )
 Combine TopArtist and TopTrack somehow into a more flexible component/page with something like type: artist | track?   => alot of extra work for kind of no gain, just some thought-process!
 TopTrackList: RightClick => Queue song!
-TopArtistList: Do something with clicks? => do <a href> like tracks for now
+TopArtistList: Do something with clicks? => do <a href> like tracks for nowI
+Proper Playlist select, currently playlilst_id is hardcoded. Maybe have Playlists page and route over with id param to playlistShuflePage?
+Basic Sort Methods to shuffle page? maybe think of some flexible attribute sort function instead of hardcoding them over and over.
+Figure out how to context-state-save User Object, or similiar. LocaleStorage would feel like a little cheating.
+Check out the other auth method, maybe it runs good serverless?
+    => Optional followup: Try out Github Pages or some AWS Free Plan to host webapp

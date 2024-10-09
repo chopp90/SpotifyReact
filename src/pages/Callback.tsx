@@ -1,8 +1,11 @@
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
 import { SpotifyAuthService } from "../services/SpotifyAuthService"
 import { redirect, useLocation, useNavigate } from 'react-router-dom';
+import { SpotifyApiService } from "../services/SpotifyApiService";
+// import { UserContext } from "../App";
 
 const authService = new SpotifyAuthService()
+const apiService = new SpotifyApiService()
 
 function Callback() {
   console.log("Callback")
@@ -10,6 +13,9 @@ function Callback() {
   const params = new URLSearchParams(location.search);
   const authorizationCode = params.get('code');
   const navigate = useNavigate()
+  // const context =  useContext(UserContext)
+  // const [ user, setUser ] = context!
+  // console.log("context",context)
 
   useEffect(()=> {
     const getToken = async (authorizationCode: string) => {
@@ -18,7 +24,16 @@ function Callback() {
         console.log("response",response)
         if(response.access_token.length){
           localStorage.setItem('accessToken', response.access_token )
-          console.log("storing", response.access_token)
+          
+          // if(!user){
+          //   const response =  await apiService.get('/me') as SpotifyApi.UserObjectPrivate
+          //   if(response){
+          //     console.log("response", response)
+          //     console.log("setUser",setUser)
+          //     setUser(response)
+          //   }
+          // }
+
           navigate('/home')
         }else{
           throw new Error('No response.access_token.length'+ response)
@@ -28,10 +43,11 @@ function Callback() {
       }
     }
 
+    // The "old" auth method that doesn't have good permissions/scope
     if(authorizationCode){
       getToken(authorizationCode)
     }
-  })
+  }, [])
 
   return (
     <>

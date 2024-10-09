@@ -8,7 +8,7 @@ import { useInView } from "react-intersection-observer";
 
 
 
-function Profile() {
+function TopArtists() {
   const initArtists: Record<SpotifyTimeRange, Array<SpotifyApi.ArtistObjectFull>> = {
     [SpotifyTimeRange.short_term] : [],
     [SpotifyTimeRange.medium_term] : [],
@@ -81,7 +81,7 @@ function Profile() {
 
   return (
     <>
-    <div className="spotify-top-list">
+    <div className="spotify-top-lists">
       {/* <div> { Object.entries(next).map((entry)=> (<div>{entry}</div>)) } </div> */}
       { 
         Object.values(artists).map((artistByTime,index)=> (
@@ -94,4 +94,4 @@ function Profile() {
   )
 }
 
-export default Profile
+export default TopArtists

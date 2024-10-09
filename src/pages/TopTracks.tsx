@@ -8,7 +8,7 @@ import { useInView } from "react-intersection-observer";
 
 
 
-function Profile() {
+function TopTracks() {
   const initTracks: Record<SpotifyTimeRange, Array<SpotifyApi.TrackObjectFull>> = {
     [SpotifyTimeRange.short_term] : [],
     [SpotifyTimeRange.medium_term] : [],
@@ -21,6 +21,7 @@ function Profile() {
     [SpotifyTimeRange.long_term] : ''
   }
   const [tracks,setTracks] = useState<Record<SpotifyTimeRange, Array<SpotifyApi.TrackObjectFull>>>(initTracks)
+  const [leftoverTracks,setLeftoverTracks] = useState< Array<SpotifyApi.TrackObjectFull>>([])
   const [next, setNext ] = useState<Record<SpotifyTimeRange, string>>(initNexts)
   const apiService = new SpotifyApiService()
 
@@ -46,6 +47,37 @@ function Profile() {
     }) as SpotifyApi.UsersTopTracksResponse
   }
 
+  async function makeLeftoverPlaylist() {
+    console.log("makeLeftOverPlaylist",leftoverTracks)
+
+    // TODO: move userData to a context... but i failed that initially :(
+    const now = new Date()
+    const user = await apiService.get('/me') as SpotifyApi.UserObjectPrivate
+    const playlist = await apiService.post(`/users/${user.id}/playlists`,
+      {
+        name: `LeftOvers: ${now}`,
+        description: 'Created by filtering TopTracks: long_term against short_ and medium_term',
+        public: false,
+      }
+    ) as SpotifyApi.CreatePlaylistResponse
+    console.log("playlist",playlist)
+    const uris = leftoverTracks.map((track)=> track.uri) 
+    console.log("uris,len",uris.length)
+    for( let i = 0; i<uris.length; i+= 100){
+      console.log(i,i+100, Math.min(uris.length+1,i+100))
+      const playlistAfter = await apiService.post(`/playlists/${playlist.id}/tracks`,
+        {
+          uris: uris.slice(i, Math.min(uris.length+1,i+100))
+        }
+      ) as SpotifyApi.AddTracksToPlaylistResponse
+      console.log(playlistAfter)
+    }
+    
+
+
+
+     
+  }
 
   async function fetchAll() {
     // TODO: feels wrong, do better?
@@ -62,6 +94,20 @@ function Profile() {
       tempNext[key] = result.next || 'end'
     }
     setTracks(tempTracks)
+
+    // going further down, more and more stuff gets filtered out
+    // TODO: idea, limit the array comparison? eg only recent 50, med 100 or so?
+    const leftover = tempTracks[SpotifyTimeRange.long_term].filter((long) => {
+      if(
+        tempTracks[SpotifyTimeRange.short_term].find((short)=> short.id === long.id) 
+        ||
+        tempTracks[SpotifyTimeRange.medium_term].find((short)=> short.id === long.id) 
+      ){
+        return false
+      }
+      return true
+    } )
+    setLeftoverTracks(leftover)
     setNext(tempNext)
   }
 
@@ -81,17 +127,28 @@ function Profile() {
 
   return (
     <>
-    <div className="spotify-top-list">
+    <div className="spotify-top-lists">
       {/* <div> { Object.entries(next).map((entry)=> (<div>{entry}</div>)) } </div> */}
       { 
-        Object.values(tracks).map((trackByTime,index)=> (
-          <SpotifyTrackList key={index} tracks={trackByTime}/>
+        Object.entries(tracks).map(([timeRange,trackByTime] ,index)=> (
+          <div className="spotify-top-list">
+            <div className="spotify-top-list__header">
+              { timeRange }
+            </div>
+            <SpotifyTrackList key={index} tracks={trackByTime}/>
+          </div>
         ))
       }
+      <div className="spotify-top-list">
+        <button className="spotify-top-list__header" onClick={makeLeftoverPlaylist}>
+          click me!
+          </button>
+      <SpotifyTrackList tracks={leftoverTracks}></SpotifyTrackList>
+      </div>
     </div>
       <div ref={ref}>TODO: loading feedback... or stop indication!</div>
     </>
   )
 }
 
-export default Profile
+export default TopTracks

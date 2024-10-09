@@ -1,9 +1,19 @@
 
-.spotify-top-list{
-    // display: flex;
-    // flex-direction: row;
+.spotify-top-lists {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    max-width: 1000px;
-    // grid-auto-rows: 320px;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    max-width: 1500px;
+}
+
+.spotify-top-list {
+    flex-direction: column;
+    
+    &__header {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        margin-inline: 1rem;
+        height:3rem;
+    }
 }
