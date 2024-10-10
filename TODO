@@ -4,6 +4,8 @@ Rough steps:
 # connect to spotify api.  ( Token/Auth hardcoded first?  DONT PUSH / gitignore )
 # Make types for the needed classes/types.  EG. Playlist, Account, extend Playlist with customOrder?  ==> testing @types/spotify-api for now
 # Idea for "Older Goldies Track-Finding": Remove short_term and medium_term songs from long_term and show the leftovers. Maybe remove most common recent artists?  ==> done ahead of shuffle
+# TopTracks: click modifier, simply dropdoown to toggle artist page / queue it?
+#   => left click: go to page ( same as artist ), right click: queue song into player
 Do something with expired auth token? ... get other token, first attempt is not for personal data!
 Check Login state at home and redirect if expired?
 Improve routing ( base app.tsx and headernavigation ) to read pages folder and do stuff with it automatically?
@@ -25,3 +27,5 @@ Basic Sort Methods to shuffle page? maybe think of some flexible attribute sort 
 Figure out how to context-state-save User Object, or similiar. LocaleStorage would feel like a little cheating.
 Check out the other auth method, maybe it runs good serverless?
     => Optional followup: Try out Github Pages or some AWS Free Plan to host webapp
+Fix popule for repeat Artists, make artist id unique somewhere.
+Popule: prepare for > 100 songs at 10 artists, or cut amount of songs per artist down? dynamically? max(10, 100 / artistCount )

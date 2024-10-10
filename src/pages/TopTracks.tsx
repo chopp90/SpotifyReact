@@ -72,9 +72,6 @@ function TopTracks() {
       ) as SpotifyApi.AddTracksToPlaylistResponse
       console.log(playlistAfter)
     }
-    
-
-
 
      
   }

@@ -6,6 +6,7 @@
     // height: auto;
     resize:both;
     border: 2px solid grey;
+    cursor: pointer;
    
 
     &__image {
@@ -14,21 +15,11 @@
         justify-content: center;
         align-items: center;
     }
+    
     &__index {
         font-size: xxx-large;
-        color:black;
-        font-weight: bold;
-        text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
-        // text-shadow: -2px 0 white, 0 2px white, 2px 0 white, 0 -2px white;
-        // font-size:medium;
-        // font-size: small;
-        // // some playing around with difference. But can't quite get it to look good, eg. on Babymetal
-        // color: white;
-        // font-weight: 500;
-        // text-align: left;
-        // mix-blend-mode: difference;
-        // text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
     }
+    
     &__list {
         background: linear-gradient(
             140deg,
@@ -38,6 +29,7 @@
             purple 80%,
             grey 100%,
             );
+            
         color: white;
         width: 100%;
         padding-left:0.5rem;

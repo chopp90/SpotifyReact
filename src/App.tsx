@@ -1,5 +1,5 @@
 import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } from 'react-router-dom';
-import './App.css';
+import './App.scss';
 import DefaultLayout from './layouts/DefaultLayout';
 import Profile from './pages/Profile';
 import Home from './pages/Home';
@@ -9,6 +9,7 @@ import TopArtists from './pages/TopArtists';
 import TopTracks from './pages/TopTracks';
 import { createContext, useState } from 'react';
 import Playlist from './pages/Playlist';
+import PlaylistPopulate from './pages/PlaylistPopulate';
 
 // export const UserContext = createContext<[
 //    SpotifyApi.UserObjectPrivate|null,
@@ -27,6 +28,7 @@ const router = createBrowserRouter(
       <Route path="/topArtists" element={<TopArtists />} />
       <Route path="/topTracks" element={<TopTracks />} />
       <Route path="/playlist" element={<Playlist />} />
+      <Route path="/playlistPopulate" element={<PlaylistPopulate />} />
     </Route>
   )
 );

@@ -13,7 +13,7 @@ function HeaderNavigation() {
     { name: 'topArtists', url: 'TopArtists' },
     { name: 'topTracks', url: 'TopTracks' },
     { name: 'playlist', url: 'Playlist' },
-    { name: 'Demo', url: '/demo' }
+    { name: 'playlistPopulate', url: 'PlaylistPopulate' },
   ]
   return (
     <>
