@@ -26,4 +26,4 @@ dist-ssr
 # own
 # Ideas
 # TODO
-*src/data/*
+*.env

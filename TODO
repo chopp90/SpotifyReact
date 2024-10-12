@@ -29,3 +29,7 @@ Check out the other auth method, maybe it runs good serverless?
     => Optional followup: Try out Github Pages or some AWS Free Plan to host webapp
 Fix popule for repeat Artists, make artist id unique somewhere.
 Popule: prepare for > 100 songs at 10 artists, or cut amount of songs per artist down? dynamically? max(10, 100 / artistCount )
+Add some ButtonPress Feedback, eg. song successfully queued sncakbar?
+Add colored buttons to mark when a button will try to create / update a playlist.
+Funcationlity to queuing, provide some sort of feedback is song is already queued?  Show queue somewhere? dont sent queueing if already in queue  => guess showing queue somewhere is best.
+re auth?  => might be auto-solved with other auth method. ( refresh token )

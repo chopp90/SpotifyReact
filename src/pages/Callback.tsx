@@ -1,6 +1,6 @@
-import { useContext, useEffect } from "react";
+import { useEffect } from "react";
 import { SpotifyAuthService } from "../services/SpotifyAuthService"
-import { redirect, useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { SpotifyApiService } from "../services/SpotifyApiService";
 // import { UserContext } from "../App";
 
@@ -8,20 +8,14 @@ const authService = new SpotifyAuthService()
 const apiService = new SpotifyApiService()
 
 function Callback() {
-  console.log("Callback")
   const location = useLocation();
   const params = new URLSearchParams(location.search);
   const authorizationCode = params.get('code');
   const navigate = useNavigate()
-  // const context =  useContext(UserContext)
-  // const [ user, setUser ] = context!
-  // console.log("context",context)
-
-  useEffect(()=> {
+    useEffect(()=> {
     const getToken = async (authorizationCode: string) => {
       try{
         const response = ( await authService.getToken(authorizationCode)) as { access_token: string}
-        console.log("response",response)
         if(response.access_token.length){
           localStorage.setItem('accessToken', response.access_token )
           

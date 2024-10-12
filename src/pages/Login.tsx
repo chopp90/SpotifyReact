@@ -1,7 +1,10 @@
+import { SpotifyAuthService } from "../services/SpotifyAuthService"
 
 // TODO <a href=....> ?
+const authService = new SpotifyAuthService()
 async function onClick () {
-  window.location.href = 'http://localhost:3000/authenticate'
+  await authService.authPKCE()
+  // window.location.href = 'http://localhost:3000/authenticate'
 }
 
 function Login() {
