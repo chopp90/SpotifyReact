@@ -1,9 +1,5 @@
 name: Deploy
 
-env:
-  VITE_CLIENT_ID: ${{ secrets.VITE_CLIENT_ID }}
-  VITE_REDIRECT_URI_BASE: ${{ secrets.VITE_REDIRECT_URI_BASE }}
-
 on:
   push:
     branches:
@@ -13,6 +9,11 @@ jobs:
   build:
     name: Build
     runs-on: ubuntu-latest
+
+    env:
+      VITE_CLIENT_ID: ${{ secrets.VITE_CLIENT_ID }}
+      VITE_REDIRECT_URI_BASE: ${{ secrets.VITE_REDIRECT_URI_BASE }}
+
 
     steps:
       - name: Checkout repo
@@ -53,4 +54,3 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist
-          
