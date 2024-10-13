@@ -22,6 +22,10 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+        env:
+          VITE_CLIENT_ID: ${{ secrets.VITE_CLIENT_ID }}
+          VITE_REDIRECT_URI_BASE: ${{ secrets.VITE_REDIRECT_URI_BASE }}
+          
       - name: Build project
         run: npm run build
         env:
