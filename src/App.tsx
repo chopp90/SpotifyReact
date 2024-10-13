@@ -30,7 +30,7 @@ const router = createBrowserRouter(
       <Route path="/playlist" element={<Playlist />} />
       <Route path="/playlistPopulate" element={<PlaylistPopulate />} />
     </Route>
-  )
+  ), {basename: '/SpotifyReact'}
 );
 
 function App() {
