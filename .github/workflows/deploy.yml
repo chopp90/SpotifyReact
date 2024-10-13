@@ -10,9 +10,6 @@ jobs:
     name: Build
     runs-on: ubuntu-latest
 
-   
-
-
     steps:
       - name: Checkout repo
         uses: actions/checkout@v2
@@ -20,13 +17,16 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v1
         with:
-          node-version: 16
+          node-version: 18
 
       - name: Install dependencies
         uses: bahmutov/npm-install@v1
 
       - name: Build project
         run: npm run build
+        with:
+          VITE_CLIENT_ID: ${{ secrets.VITE_CLIENT_ID }}
+          VITE_REDIRECT_URI_BASE: ${{ secrets.VITE_REDIRECT_URI_BASE }}
         env:
           VITE_CLIENT_ID: ${{ secrets.VITE_CLIENT_ID }}
           VITE_REDIRECT_URI_BASE: ${{ secrets.VITE_REDIRECT_URI_BASE }}
