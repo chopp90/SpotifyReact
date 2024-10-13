@@ -2,15 +2,13 @@
 import { useEffect, useState } from "react"
 import { SpotifyApiService } from "../services/SpotifyApiService"
 import { SpotifyArtistList, SpotifyTrackList } from "../components"
-import { SpotifyTimeRange } from "../types/spotifyAPITypes"
 import './TopList.scss';
-import { useInView } from "react-intersection-observer";
 
 // TODO: sortTypes isntead of string and init against typescript error
 const playlistID = '7yaAhcmYp21NkhXrVGFo0f'
 
 function PlaylistPopulate() {
-  const [trackLists,setTrackLists] = useState<Record<string, Array<SpotifyApi.TrackObjectFull | null>>>({})
+  const [trackLists,setTrackLists] = useState<Record<string, Array<SpotifyApi.TrackObjectFull>>>({})
   const [artistList,setArtistList] = useState<Array<SpotifyApi.ArtistObjectFull>> ([])
   const apiService = new SpotifyApiService()
 
@@ -24,7 +22,7 @@ function PlaylistPopulate() {
     if(!playlist){
       return
     }
-    const tracks = playlist?.tracks?.items?.filter((item)=>!!item.track).map((item)=>item.track) || []
+    const tracks = playlist?.tracks?.items?.filter((item)=>!!item.track).map((item)=>item.track!) || []
     setTrackLists( { default: tracks})
 
     // TODO: unique entries for artists, no repeats if multiple songs!
@@ -52,7 +50,7 @@ function PlaylistPopulate() {
     responses.forEach((tracks: SpotifyApi.ArtistsTopTracksResponse)=>{
       generatedList = generatedList.concat(tracks.tracks)
     })
-    let tempList: Record<string, Array<SpotifyApi.TrackObjectFull | null>> = {default: trackLists['default']}
+    let tempList: Record<string, Array<SpotifyApi.TrackObjectFull >> = {default: trackLists['default']}
     tempList = {...tempList, generated: generatedList}
     console.log("tempList")
     setTrackLists(tempList)
@@ -89,6 +87,9 @@ function PlaylistPopulate() {
         { 
           Object.entries(trackLists).map(([type,tracks] ,index)=> (
             <div className="spotify-top-list">
+              <div>
+                {type}
+              </div>
               {/* <button className="spotify-top-list__header" onClick={() => updateOrder(type)}>
                 { type }
               </button> */}

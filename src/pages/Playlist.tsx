@@ -2,15 +2,13 @@
 import { useEffect, useState } from "react"
 import { SpotifyApiService } from "../services/SpotifyApiService"
 import { SpotifyTrackList } from "../components"
-import { SpotifyTimeRange } from "../types/spotifyAPITypes"
 import './TopList.scss';
-import { useInView } from "react-intersection-observer";
 
 // TODO: sortTypes isntead of string and init against typescript error
 const playlistID = '1CscVbpNXaET0CA4RXNBPr'
 
 function Playlist() {
-  const [trackLists,setTrackLists] = useState<Record<string, Array<SpotifyApi.TrackObjectFull | null>>>({})
+  const [trackLists,setTrackLists] = useState<Record<string, Array<SpotifyApi.TrackObjectFull>>>({})
   
   const apiService = new SpotifyApiService()
 
@@ -50,7 +48,7 @@ function Playlist() {
  
 
   function shuffle() {
-    let tempList: Record<string, Array<SpotifyApi.TrackObjectFull | null>> = {default: trackLists['default']}
+    let tempList: Record<string, Array<SpotifyApi.TrackObjectFull>> = {default: trackLists['default']}
     // const random = shuffleRandom()
     tempList = { ...tempList, random: shuffleRandom() } 
     tempList = { ...tempList, alphabetically: sortAlphabetically() } 
@@ -67,7 +65,7 @@ function Playlist() {
       return
     }
     console.log(playlist)
-    const tracks = playlist?.tracks?.items?.filter((item)=>!!item.track).map((item)=>item.track) || []
+    const tracks = playlist?.tracks?.items?.filter((item)=>!!item.track).map((item)=>item.track!) || []
     console.log("tracks",tracks)
     setTrackLists( { default: tracks})
     console.log(trackLists['default'])

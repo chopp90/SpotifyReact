@@ -1,11 +1,9 @@
 import { useEffect } from "react";
 import { SpotifyAuthService } from "../services/SpotifyAuthService"
 import { useLocation, useNavigate } from 'react-router-dom';
-import { SpotifyApiService } from "../services/SpotifyApiService";
 // import { UserContext } from "../App";
 
 const authService = new SpotifyAuthService()
-const apiService = new SpotifyApiService()
 
 function Callback() {
   const location = useLocation();
