@@ -23,13 +23,13 @@ jobs:
         uses: bahmutov/npm-install@v1
 
       - name: Build project
-        run: npm run build
         with:
           VITE_CLIENT_ID: ${{ secrets.VITE_CLIENT_ID }}
           VITE_REDIRECT_URI_BASE: ${{ secrets.VITE_REDIRECT_URI_BASE }}
         env:
           VITE_CLIENT_ID: ${{ secrets.VITE_CLIENT_ID }}
           VITE_REDIRECT_URI_BASE: ${{ secrets.VITE_REDIRECT_URI_BASE }}
+        run: npm run build
 
       - name: Upload production-ready build files
         uses: actions/upload-artifact@v4
