@@ -15,6 +15,7 @@ function Login() {
       <button onClick={onClick}>
         Authenticate
       </button>
+      { import.meta.env.VITE_REDIRECT_URI_BASE }
     </div>
     </>
   )
