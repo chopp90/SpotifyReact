@@ -15,7 +15,7 @@ function Callback() {
       try{
         const response = ( await authService.getToken(authorizationCode)) as { access_token: string}
         if(response.access_token.length){
-          localStorage.setItem('accessToken', response.access_token )
+          sessionStorage.setItem('accessToken', response.access_token )
           
           // if(!user){
           //   const response =  await apiService.get('/me') as SpotifyApi.UserObjectPrivate

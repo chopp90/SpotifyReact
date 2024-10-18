@@ -1,6 +1,20 @@
 /** 
 * Kind of global available styles
 */
+.button-create {
+  background-color: green;
+  border: 2px solid limegreen;
+  
+}
+
+.button-update {
+  background-color: orange;
+  border: 2px solid red;
+  color: black;
+}
+.button-delete {
+  background-color: red($color: #000000);
+}
 
 .font-on-image {
   font-weight: bold;

@@ -13,8 +13,8 @@ export function SpotifyTrackList({tracks}: Props) {
       <div className="spotify-track-list">
         { tracks.map((track,index)=> (
           <SpotifyTrackCard key={index} track={track} index={index}/>
-        ))
-      }
+          ))
+        }
       </div>
     </>
     

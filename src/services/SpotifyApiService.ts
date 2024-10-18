@@ -1,13 +1,15 @@
 // src/services/apiService.ts
 import axios, { AxiosInstance, AxiosResponse } from 'axios';
+import { SpotifyAuthService } from './SpotifyAuthService';
 
 const baseURL = 'https://api.spotify.com/v1' // TODO: are there other versions? or can i leave v1?
 //TODO: make a trim function as fallback for '/' stuff?
 export class SpotifyApiService {
   private api: AxiosInstance;
+  private authService= new SpotifyAuthService()
     
   constructor() {
-    const accessToken = localStorage.getItem('accessToken')
+    const accessToken = sessionStorage.getItem('accessToken')
     if(!accessToken){
       console.warn('Starting Spotify Api Service without accessToken')
     }
@@ -66,8 +68,16 @@ export class SpotifyApiService {
   }
 
   // Handle errors
-  private handleError(error: any) {
+  private async handleError(error: any) {
     // You can log errors, send them to a logging service, etc.
     console.error('API call error:', error);
+    console.error(error.status)
+    if(error.status !== 401){
+      console.log("return")
+      return
+    }
+    console.log("else")
+    const response = await this.authService.refreshToken()
+    console.log("response",response)
   }
 }

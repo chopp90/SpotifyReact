@@ -1,0 +1,33 @@
+.queue {
+
+  &__container {
+
+  }
+  
+  &__button {
+    padding-block: 0px;
+    border: 1px solid lightgrey;
+  }
+  
+  &__popup {
+    display: grid;
+    background-color: black;
+    border: 5px solid whitesmoke;
+    padding: 5px;
+    grid-template-columns: 1fr 1fr 1fr;
+    position:absolute;
+
+    &--current {
+      grid-column: span 3;
+      border-bottom: 2px solid whitesmoke;
+      text-align: center;
+    }
+
+    &--text {
+      font-size: xx-large;
+      font-weight: bolder;
+      text-align: center;
+      align-content: center;
+    }
+  }  
+}

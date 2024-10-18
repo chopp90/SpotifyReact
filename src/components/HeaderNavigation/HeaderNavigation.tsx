@@ -1,3 +1,4 @@
+import Queue from '../Queue/Queue';
 import './HeaderNavigation.scss';
 
 export type NavigationItem = {
@@ -18,6 +19,7 @@ function HeaderNavigation() {
   return (
     <>
       <div className="header-navigation">
+        <Queue/>
         { navigationItems.map((item,index)=> (
             <div key={index} className="header-navigation__item">
               <a href={item.url}>
@@ -26,7 +28,7 @@ function HeaderNavigation() {
             </div>
         ))
         }
-      </div>
+       </div>
     </>
     
   )

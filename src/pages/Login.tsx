@@ -4,7 +4,10 @@ import { SpotifyAuthService } from "../services/SpotifyAuthService"
 const authService = new SpotifyAuthService()
 async function onClick () {
   await authService.authPKCE()
-  // window.location.href = 'http://localhost:3000/authenticate'
+}
+
+async function refreshToken () {
+  console.log(await authService.refreshToken())
 }
 
 function Login() {
@@ -15,7 +18,9 @@ function Login() {
       <button onClick={onClick}>
         Authenticate
       </button>
-      { import.meta.env.VITE_REDIRECT_URI_BASE }
+      <button onClick={refreshToken}>
+        RefreshTokenTest
+      </button>
     </div>
     </>
   )

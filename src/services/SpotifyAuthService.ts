@@ -38,11 +38,11 @@ public async authPKCE() {
   const codeChallenge = this.base64encode(hashed)
   
   
-  const scope = 'user-read-private user-read-email playlist-read-private user-top-read playlist-modify-public playlist-modify-private user-modify-playback-state';
+  const scope = 'user-read-private user-read-email playlist-read-private user-top-read playlist-modify-public playlist-modify-private user-modify-playback-state user-read-currently-playing user-read-playback-state';
   const authUrl = new URL("https://accounts.spotify.com/authorize")
   
   // generated in the previous step
-  window.localStorage.setItem('code_verifier', codeVerifier);
+  window.sessionStorage.setItem('code_verifier', codeVerifier);
   
   const params =  {
     response_type: 'code',
@@ -59,7 +59,7 @@ public async authPKCE() {
 
   public async getToken<T>(code: string): Promise<T> {
     // try {
-    const codeVerifier = window.localStorage.getItem('code_verifier',);
+    const codeVerifier = window.sessionStorage.getItem('code_verifier',);
 
       const response = await axios.post('https://accounts.spotify.com/api/token', {
         grant_type: 'authorization_code',
@@ -73,6 +73,9 @@ public async authPKCE() {
         },
       });
       console.log("returning data",response.data)
+      if(response.data.refresh_token){
+        sessionStorage.setItem('refreshToken', response.data.refresh_token)
+      }
       return response.data
     // } catch (error) {
     //   console.error(error.response.data)
@@ -80,6 +83,37 @@ public async authPKCE() {
     // }
   }
 
+  public async refreshToken<T>(): Promise<boolean> {
+    const refreshToken = sessionStorage.getItem('refreshToken')
+    if(!refreshToken){
+      return new Promise(()=>false)
+    }
+   const response= await axios.post('https://accounts.spotify.com/api/token', {
+      grant_type: 'refresh_token',
+      refresh_token: refreshToken,      
+      client_id: this.clientId,
+    }, {
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+    });
+
+    
+    console.log("returning data",response.data)
+
+    if(!response.data.access_token){
+      return false
+    }
+    sessionStorage.setItem('accessToken', response.data.access_token)
+
+    if(!response.data.refresh_token){
+      return false
+    }
+    sessionStorage.setItem('refreshToken', response.data.refresh_token)
+    
+    return true
+
+  }  
 
 
   // CORS error like this, using hyperlink to BE now, TODO: maybe test again with new server cors setting
