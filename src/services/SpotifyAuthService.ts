@@ -4,7 +4,7 @@ const baseURL = 'http://localhost:3000'
 export class SpotifyAuthService {
   private api: AxiosInstance
   private clientId=  import.meta.env.VITE_CLIENT_ID || ''
-  private redirectUri = `${import.meta.env.VITE_REDICT_URI_BASE}/SpotifyReact/callback`  
+  private redirectUri = `${import.meta.env.VITE_REDIRECT_URI_BASE}/SpotifyReact/callback`  
 
   constructor() {
     this.api = axios.create({
