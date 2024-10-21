@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { SpotifyApiService } from '../../services/SpotifyApiService';
 import './Queue.scss';
 import SpotifyTrackCard from '../SpotifyTrackCard/SpotifyTrackCard';
@@ -16,17 +16,20 @@ function Queue() {
 
   async function  fetchQueue() {
     const result = await apiService.get('/me/player/queue') as SpotifyApi.UsersQueueResponse
-    console.log("result",result)
     setCurrent(result.currently_playing as SpotifyApi.TrackObjectFull)
     setTracks(result.queue as Array<SpotifyApi.TrackObjectFull>)
   }
 
   function onClick(){
     setShowQueue(!showQueue)
-    if(showQueue){
+    if(!showQueue){
       fetchQueue()
     }
   }
+
+  useEffect(()=>{
+    fetchQueue()
+  })
 
   return (
     <>

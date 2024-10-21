@@ -3,4 +3,6 @@ export { default as SpotifyArtistCard } from './SpotifyArtistCard/SpotifyArtistC
 export { default as SpotifyArtistList } from './SpotifyArtistList/SpotifyArtistList'
 export { default as SpotifyTrackCard } from './SpotifyTrackCard/SpotifyTrackCard'
 export { default as SpotifyTrackList } from './SpotifyTrackList/SpotifyTrackList'
+export { default as SpotifyPlaylistCard } from './SpotifyPlaylistCard/SpotifyPlaylistCard'
+export { default as SpotifyPlaylistList } from './SpotifyPlaylistList/SpotifyPlaylistList'
 export { default as Queue } from './Queue/Queue'

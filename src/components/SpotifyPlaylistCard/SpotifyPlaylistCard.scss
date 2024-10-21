@@ -1,0 +1,41 @@
+.spotify-artist-card{
+    margin: 0.5rem;
+    min-height: 200px;
+    resize:both;
+    border: 2px solid grey;
+
+    &__font {
+        font-weight: bold;
+    }
+    
+    &__list {
+        width: 100%;
+
+        &--title{            
+            width:100%;
+            padding-left:0px;
+            font-size: x-large;
+            margin-bottom: 10px;
+            display: flex;
+            flex-direction: row;
+
+            &__index{
+                padding-left: 1rem;
+                text-align: left;
+            }
+            &__name{
+                width:100%;
+                text-align: center;
+            }
+        }
+
+        &--item, &--item-v2 {
+            text-align: left;
+        }
+
+        &--item {
+            padding-left: 1rem;            
+        }
+        
+    }
+}

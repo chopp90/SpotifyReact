@@ -10,7 +10,8 @@ function Callback() {
   const params = new URLSearchParams(location.search);
   const authorizationCode = params.get('code');
   const navigate = useNavigate()
-    useEffect(()=> {
+
+  useEffect(()=> {
     const getToken = async (authorizationCode: string) => {
       try{
         const response = ( await authService.getToken(authorizationCode)) as { access_token: string}
@@ -39,7 +40,7 @@ function Callback() {
     if(authorizationCode){
       getToken(authorizationCode)
     }
-  }, [])
+  })
 
   return (
     <>

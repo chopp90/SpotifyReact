@@ -26,15 +26,13 @@ function TopTracks() {
   const apiService = new SpotifyApiService()
 
   async function fetch(timeRange: SpotifyTimeRange) {
-    console.log("fetch:", timeRange, next)
-    //TODO: check for end of nexts?
     
     if(next[timeRange]){
       if(next[timeRange] === 'end'){
         console.warn("end of next for ",timeRange)
         return
       }
-      console.log("next,timeRange:", next[timeRange])
+
       return await apiService.get( '/me/top/tracks'
         + next[timeRange].split('/me/top/tracks')[1])as SpotifyApi.UsersTopTracksResponse 
     }
@@ -48,7 +46,6 @@ function TopTracks() {
   }
 
   async function makeLeftoverPlaylist() {
-    console.log("makeLeftOverPlaylist",leftoverTracks)
 
     // TODO: move userData to a context... but i failed that initially :(
     const now = new Date()
@@ -60,17 +57,13 @@ function TopTracks() {
         public: false,
       }
     ) as SpotifyApi.CreatePlaylistResponse
-    console.log("playlist",playlist)
     const uris = leftoverTracks.map((track)=> track.uri) 
-    console.log("uris,len",uris.length)
     for( let i = 0; i<uris.length; i+= 100){
-      console.log(i,i+100, Math.min(uris.length+1,i+100))
-      const playlistAfter = await apiService.post(`/playlists/${playlist.id}/tracks`,
+      await apiService.post(`/playlists/${playlist.id}/tracks`,
         {
           uris: uris.slice(i, Math.min(uris.length+1,i+100))
         }
       ) as SpotifyApi.AddTracksToPlaylistResponse
-      console.log(playlistAfter)
     }
 
      
@@ -110,16 +103,12 @@ function TopTracks() {
 
 
   
-  const { ref, inView, entry } = useInView({
-    /* Optional options */
+  const { ref, inView} = useInView({
     threshold: 0,
   });
   
   useEffect(() => {
-    console.log("useEffect",inView, entry)
     fetchAll()
-
-
   }, [inView])
 
   return (

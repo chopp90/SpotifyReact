@@ -33,4 +33,8 @@ Add some ButtonPress Feedback, eg. song successfully queued sncakbar?
 Add colored buttons to mark when a button will try to create / update a playlist.
 Funcationlity to queuing, provide some sort of feedback is song is already queued?  Show queue somewhere? dont sent queueing if already in queue  => guess showing queue somewhere is best.
 re auth?  => might be auto-solved with other auth method. ( refresh token ) => still gotta implement some refresh token refreshing. ==> where to save it? sessionStorage? just in a variable? or just use localeStorage?  ( jsut a small hobbyproject.. so probably doesn't matter )
+=> kinda done, improve refresh, first 401 now refreshes, but is lost. Auto refresh after a bit, keep track of last call and repeat after refresh?
 properly set unique keys. at the bare minimum the ones that don't even have an index yet.
+WIP: playlists select => move selectedPlaylist to shuffle/populate
+WIP: PlaylistCard
+Noticed: Figure out how to emit out a clickevent from PlaylistCard over PlaylistList to Playlists(page), or cheat with context/storage...

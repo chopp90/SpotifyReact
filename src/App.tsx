@@ -8,8 +8,9 @@ import Callback from './pages/Callback';
 import TopArtists from './pages/TopArtists';
 import TopTracks from './pages/TopTracks';
 // import { createContext, useState } from 'react';
-import Playlist from './pages/Playlist';
+import PlaylistShuffle from './pages/PlaylistShuffle';
 import PlaylistPopulate from './pages/PlaylistPopulate';
+import Playlists from './pages/Playlists';
 
 // export const UserContext = createContext<[
 //    SpotifyApi.UserObjectPrivate|null,
@@ -27,7 +28,8 @@ const router = createBrowserRouter(
       <Route path="/profile" element={<Profile />} />
       <Route path="/topArtists" element={<TopArtists />} />
       <Route path="/topTracks" element={<TopTracks />} />
-      <Route path="/playlist" element={<Playlist />} />
+      <Route path="/Playlists" element={<Playlists />} />
+      <Route path="/PlaylistShuffle" element={<PlaylistShuffle />} />
       <Route path="/playlistPopulate" element={<PlaylistPopulate />} />
     </Route>
   ), {basename: '/SpotifyReact'}

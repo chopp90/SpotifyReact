@@ -73,11 +73,8 @@ export class SpotifyApiService {
     console.error('API call error:', error);
     console.error(error.status)
     if(error.status !== 401){
-      console.log("return")
       return
     }
-    console.log("else")
-    const response = await this.authService.refreshToken()
-    console.log("response",response)
+    return await this.authService.refreshToken()
   }
 }

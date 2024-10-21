@@ -72,7 +72,6 @@ public async authPKCE() {
           'Content-Type': 'application/x-www-form-urlencoded',
         },
       });
-      console.log("returning data",response.data)
       if(response.data.refresh_token){
         sessionStorage.setItem('refreshToken', response.data.refresh_token)
       }
@@ -83,7 +82,7 @@ public async authPKCE() {
     // }
   }
 
-  public async refreshToken<T>(): Promise<boolean> {
+  public async refreshToken(): Promise<boolean> {
     const refreshToken = sessionStorage.getItem('refreshToken')
     if(!refreshToken){
       return new Promise(()=>false)
@@ -97,9 +96,6 @@ public async authPKCE() {
         'Content-Type': 'application/x-www-form-urlencoded',
       },
     });
-
-    
-    console.log("returning data",response.data)
 
     if(!response.data.access_token){
       return false

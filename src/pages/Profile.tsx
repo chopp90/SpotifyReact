@@ -15,15 +15,11 @@ function Profile() {
     
     const response = await apiService.get('/me') as SpotifyApi.UserObjectPrivate
     setUser(response)
-    console.log(Object.entries(response))
-    Object.entries(response).map(([entry,value])=>{
-      console.log(entry,value)
-    })
   }
 
   useEffect(()=>{
     fetch()
-  },[])
+  })
 
 
   return (

@@ -8,9 +8,8 @@ type Props = {
 
 const apiService = new SpotifyApiService()
 async function addTrackToQueue ( uri: string )  {
-  const response = await apiService.post(`/me/player/queue?uri=${uri}`, {}
+  return await apiService.post(`/me/player/queue?uri=${uri}`, {}
   ) as SpotifyApi.AddToQueueResponse
-  console.log(response)
 }
 
 function openTrackInTab( url: string) {

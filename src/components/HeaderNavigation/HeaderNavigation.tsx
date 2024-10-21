@@ -13,7 +13,8 @@ function HeaderNavigation() {
     { name: 'profile', url: 'Profile' },
     { name: 'topArtists', url: 'TopArtists' },
     { name: 'topTracks', url: 'TopTracks' },
-    { name: 'playlist', url: 'Playlist' },
+    { name: 'Playlists', url: 'Playlists' },
+    { name: 'PlaylistShuffle', url: 'PlaylistShuffle' },
     { name: 'playlistPopulate', url: 'PlaylistPopulate' },
   ]
   return (

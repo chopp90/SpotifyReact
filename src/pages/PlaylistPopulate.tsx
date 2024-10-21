@@ -35,7 +35,7 @@ function PlaylistPopulate() {
     setArtistList(tempArtists.artists)
 
     // TODO: also do something with newest album?   are single releases there?
-    let promises : Array<Promise<SpotifyApi.ArtistsTopTracksResponse>> = []
+    const promises : Array<Promise<SpotifyApi.ArtistsTopTracksResponse>> = []
     artistList.forEach(async (artist) => {
       promises.push(apiService.get(`artists/${artist.id}/top-tracks`) as Promise<SpotifyApi.ArtistsTopTracksResponse> )
       // const response = await apiService.get(`artists/${artist.id}/top-tracks`) as SpotifyApi.ArtistsTopTracksResponse
@@ -52,26 +52,20 @@ function PlaylistPopulate() {
     })
     let tempList: Record<string, Array<SpotifyApi.TrackObjectFull >> = {default: trackLists['default']}
     tempList = {...tempList, generated: generatedList}
-    console.log("tempList")
     setTrackLists(tempList)
-    console.log(trackLists)
-
-
   }
 
 
   async function updatePlaylist() {
-    const response = await apiService.put(`/playlists/${playlistID}/tracks`,{
+    return await apiService.put(`/playlists/${playlistID}/tracks`,{
       uris: trackLists['generated'].map((track)=> track?.uri)
     })
-    console.log(response)
-     
   }
 
 
   useEffect(()=> {
     fetchPlaylist()
-  }, [])
+  })
 
   return (
     <> 

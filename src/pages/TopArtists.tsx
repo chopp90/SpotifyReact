@@ -25,15 +25,12 @@ function TopArtists() {
   const apiService = new SpotifyApiService()
 
   async function fetch(timeRange: SpotifyTimeRange) {
-    console.log("fetch:", timeRange, next)
-    //TODO: check for end of nexts?
     
     if(next[timeRange]){
       if(next[timeRange] === 'end'){
         console.warn("end of next for ",timeRange)
         return
       }
-      console.log("next,timeRange:", next[timeRange])
       return await apiService.get( '/me/top/artists'
         + next[timeRange].split('/me/top/artists')[1])as SpotifyApi.UsersTopArtistsResponse 
     }
@@ -67,16 +64,12 @@ function TopArtists() {
 
 
   
-  const { ref, inView, entry } = useInView({
-    /* Optional options */
+  const { ref, inView } = useInView({
     threshold: 0,
   });
   
   useEffect(() => {
-    console.log("useEffect",inView, entry)
     fetchAll()
-
-
   }, [inView])
 
   return (

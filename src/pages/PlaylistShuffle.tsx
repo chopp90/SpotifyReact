@@ -7,7 +7,7 @@ import './TopList.scss';
 // TODO: sortTypes isntead of string and init against typescript error
 const playlistID = '1CscVbpNXaET0CA4RXNBPr'
 
-function Playlist() {
+function PlaylistShuffle() {
   const [trackLists,setTrackLists] = useState<Record<string, Array<SpotifyApi.TrackObjectFull>>>({})
   
   const apiService = new SpotifyApiService()
@@ -18,7 +18,7 @@ function Playlist() {
      * just assign random and sort, nothing else
      */
   function shuffleRandom() {
-    let tempList = trackLists['default'].map((track)=> {
+    const tempList = trackLists['default'].map((track)=> {
       return {
         track,
         position: Math.random()
@@ -27,13 +27,12 @@ function Playlist() {
     .sort((a,b)=> a.position-b.position)
     .map((track)=> track.track)
 
-    console.log("temp",tempList)
     return tempList
     // setTrackLists({ ... trackLists, random: tempList})
   }
 
   function sortAlphabetically() {
-    let tempList = trackLists['default'].sort((a,b) => {
+    const tempList = trackLists['default'].slice().sort((a,b) => {
       if(!a){
         return -1
       }
@@ -49,10 +48,12 @@ function Playlist() {
 
   function shuffle() {
     let tempList: Record<string, Array<SpotifyApi.TrackObjectFull>> = {default: trackLists['default']}
+    console.log("trackLists",trackLists)
     // const random = shuffleRandom()
     tempList = { ...tempList, random: shuffleRandom() } 
     tempList = { ...tempList, alphabetically: sortAlphabetically() } 
     setTrackLists(tempList)
+    console.log("tempList",tempList)
   }
 
   async function fetchPlaylist() {
@@ -80,7 +81,7 @@ function Playlist() {
 
   useEffect(()=> {
     fetchPlaylist()
-  }, [])
+  })
 
   return (
     <> 
@@ -107,4 +108,4 @@ function Playlist() {
   )
 }
 
-export default Playlist
+export default PlaylistShuffle

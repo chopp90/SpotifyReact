@@ -6,7 +6,6 @@ type Props = {
 }
 
 export function SpotifyArtistList({artists}: Props) {  
-  console.log("artists", artists)
   return (
     <>
       <div className="spotify-artist-list">

@@ -7,7 +7,7 @@ async function onClick () {
 }
 
 async function refreshToken () {
-  console.log(await authService.refreshToken())
+  await authService.refreshToken()
 }
 
 function Login() {
