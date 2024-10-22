@@ -29,7 +29,7 @@ function Queue() {
 
   useEffect(()=>{
     fetchQueue()
-  })
+  },[])
 
   return (
     <>

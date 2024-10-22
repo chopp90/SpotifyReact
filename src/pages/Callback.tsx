@@ -40,7 +40,7 @@ function Callback() {
     if(authorizationCode){
       getToken(authorizationCode)
     }
-  })
+  },[])
 
   return (
     <>

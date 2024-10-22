@@ -65,7 +65,7 @@ function PlaylistPopulate() {
 
   useEffect(()=> {
     fetchPlaylist()
-  })
+  },[])
 
   return (
     <> 

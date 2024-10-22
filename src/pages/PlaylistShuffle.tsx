@@ -81,7 +81,7 @@ function PlaylistShuffle() {
 
   useEffect(()=> {
     fetchPlaylist()
-  })
+  },[])
 
   return (
     <> 
