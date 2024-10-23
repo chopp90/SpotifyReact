@@ -9,7 +9,7 @@ export class SpotifyApiService {
   private authService= new SpotifyAuthService()
     
   constructor() {
-    const accessToken = sessionStorage.getItem('accessToken')
+    const accessToken = localStorage.getItem('accessToken')
     if(!accessToken){
       console.warn('Starting Spotify Api Service without accessToken')
     }

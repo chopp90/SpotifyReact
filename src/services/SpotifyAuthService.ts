@@ -42,7 +42,7 @@ public async authPKCE() {
   const authUrl = new URL("https://accounts.spotify.com/authorize")
   
   // generated in the previous step
-  window.sessionStorage.setItem('code_verifier', codeVerifier);
+  window.localStorage.setItem('code_verifier', codeVerifier);
   
   const params =  {
     response_type: 'code',
@@ -59,7 +59,7 @@ public async authPKCE() {
 
   public async getToken<T>(code: string): Promise<T> {
     // try {
-    const codeVerifier = window.sessionStorage.getItem('code_verifier',);
+    const codeVerifier = window.localStorage.getItem('code_verifier',);
 
       const response = await axios.post('https://accounts.spotify.com/api/token', {
         grant_type: 'authorization_code',
@@ -73,7 +73,7 @@ public async authPKCE() {
         },
       });
       if(response.data.refresh_token){
-        sessionStorage.setItem('refreshToken', response.data.refresh_token)
+        localStorage.setItem('refreshToken', response.data.refresh_token)
       }
       return response.data
     // } catch (error) {
@@ -83,7 +83,7 @@ public async authPKCE() {
   }
 
   public async refreshToken(): Promise<boolean> {
-    const refreshToken = sessionStorage.getItem('refreshToken')
+    const refreshToken = localStorage.getItem('refreshToken')
     if(!refreshToken){
       return new Promise(()=>false)
     }
@@ -100,12 +100,12 @@ public async authPKCE() {
     if(!response.data.access_token){
       return false
     }
-    sessionStorage.setItem('accessToken', response.data.access_token)
+    localStorage.setItem('accessToken', response.data.access_token)
 
     if(!response.data.refresh_token){
       return false
     }
-    sessionStorage.setItem('refreshToken', response.data.refresh_token)
+    localStorage.setItem('refreshToken', response.data.refresh_token)
     
     return true
 
