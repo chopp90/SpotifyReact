@@ -3,14 +3,15 @@ import { useEffect, useState } from "react"
 import { SpotifyApiService } from "../services/SpotifyApiService"
 import { SpotifyArtistList, SpotifyTrackList } from "../components"
 import './TopList.scss';
+import { useParams } from "react-router-dom";
 
 // TODO: sortTypes isntead of string and init against typescript error
-const playlistID = '7yaAhcmYp21NkhXrVGFo0f'
 
 function PlaylistPopulate() {
   const [trackLists,setTrackLists] = useState<Record<string, Array<SpotifyApi.TrackObjectFull>>>({})
   const [artistList,setArtistList] = useState<Array<SpotifyApi.ArtistObjectFull>> ([])
   const apiService = new SpotifyApiService()
+  const playlistID = useParams().id || '7yaAhcmYp21NkhXrVGFo0f'
 
   let playlist: SpotifyApi.SinglePlaylistResponse | undefined = undefined 
 
@@ -73,7 +74,7 @@ function PlaylistPopulate() {
        click me!
        
       </button> */}
-      <button onClick={updatePlaylist}> Send it!</button>
+      <button className="button-create" onClick={updatePlaylist}> Send it!</button>
       
       <div className="spotify-top-lists">
         

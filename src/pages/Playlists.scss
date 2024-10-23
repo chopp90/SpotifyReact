@@ -1,0 +1,29 @@
+
+.spotify-playlists {
+
+    display: grid;
+    grid-template-columns: 200px 400px;
+    gap: 2rem;
+
+    &__selected {
+        border: 5px solid whitesmoke;
+        &--header{}
+        &--button{
+            border: 1px solid whitesmoke;
+        }
+    }
+   
+}
+
+// .spotify-top-list {
+//     flex-direction: column;
+    
+//     &__header {
+//         display: flex;
+//         justify-content: center;
+//         align-items: center;
+//         width: 100%;
+//         margin-inline: 1rem;
+//         height:3rem;
+//     }
+// }

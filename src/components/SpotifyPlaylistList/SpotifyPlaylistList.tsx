@@ -3,14 +3,17 @@ import './SpotifyPlaylistList.scss';
 
 type Props = {
   playlists: Array<SpotifyApi.PlaylistObjectSimplified>
+  clicked: Function
 }
 
-export function SpotifyPlaylistList({playlists}: Props) {  
+export function SpotifyPlaylistList({playlists,clicked}: Props) {  
+  
+
   return (
     <>
-      <div className="spotify-artist-list">
+      <div className="spotify-playlist-list">
         { playlists.map((playlist,index)=> (
-          <SpotifyPlaylistCard key={index} playlist={playlist} index={index}/>
+          <SpotifyPlaylistCard key={index} playlist={playlist} index={index} clicked={clicked}/>
         ))
       }
       </div>

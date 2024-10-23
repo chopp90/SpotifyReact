@@ -17,6 +17,8 @@ import Playlists from './pages/Playlists';
 //     React.Dispatch<React.SetStateAction<SpotifyApi.UserObjectPrivate | null > > 
 //  ] | undefined >(undefined)
 
+export const baseURL = '/SpotifyReact'
+
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={< DefaultLayout />}>
@@ -31,8 +33,10 @@ const router = createBrowserRouter(
       <Route path="/Playlists" element={<Playlists />} />
       <Route path="/PlaylistShuffle" element={<PlaylistShuffle />} />
       <Route path="/playlistPopulate" element={<PlaylistPopulate />} />
+      <Route path="/PlaylistShuffle/:id" element={<PlaylistShuffle />} />
+      <Route path="/playlistPopulate/:id" element={<PlaylistPopulate />} />
     </Route>
-  ), {basename: '/SpotifyReact'}
+  ), {basename: baseURL}
 );
 
 function App() {

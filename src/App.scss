@@ -8,12 +8,14 @@
 }
 
 .button-update {
-  background-color: orange;
-  border: 2px solid red;
-  color: black;
+  background-color: orangered;
+  border: 2px solid yellowgreen;
+  color: yellowgreen;
 }
 .button-delete {
-  background-color: red($color: #000000);
+  background-color: red;
+  border: 2px solid white;
+  color: white;
 }
 
 .font-on-image {
@@ -51,6 +53,12 @@
 }
 
 
+// lazy no extra file part:
+.home{
+  display: flex;
+  flex-direction: column;
+  gap:1rem;
+}
 
 /**
 * Stuff from project-creation and/or demo

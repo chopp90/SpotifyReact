@@ -1,8 +1,11 @@
-.spotify-artist-card{
+.spotify-playlist-card{
     margin: 0.5rem;
-    min-height: 200px;
+    height: 150px;
+    width: 200px;
     resize:both;
     border: 2px solid grey;
+    align-self: center;
+    justify-self:center;
 
     &__font {
         font-weight: bold;

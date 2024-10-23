@@ -1,18 +1,19 @@
 
 import { useEffect, useState } from "react"
 import { SpotifyApiService } from "../services/SpotifyApiService"
-import { SpotifyTrackList } from "../components"
+import { SpotifyPlaylistCard, SpotifyTrackList } from "../components"
 import './TopList.scss';
+import { useParams } from "react-router-dom";
 
 // TODO: sortTypes isntead of string and init against typescript error
-const playlistID = '1CscVbpNXaET0CA4RXNBPr'
 
 function PlaylistShuffle() {
+  const [playlist,setPlaylist] = useState<SpotifyApi.SinglePlaylistResponse | undefined>(undefined)
   const [trackLists,setTrackLists] = useState<Record<string, Array<SpotifyApi.TrackObjectFull>>>({})
+  const playlistID = useParams().id || '1CscVbpNXaET0CA4RXNBPr'
+  console.log("playlistID",playlistID)
   
   const apiService = new SpotifyApiService()
-
-  let playlist: SpotifyApi.SinglePlaylistResponse | undefined = undefined 
 
   /**
      * just assign random and sort, nothing else
@@ -58,18 +59,16 @@ function PlaylistShuffle() {
 
   async function fetchPlaylist() {
 
-    playlist = await apiService.get(`/playlists/${playlistID}`,{
+    const response=  await apiService.get(`/playlists/${playlistID}`,{
       market: 'DE',
       // fields: 'items(track(name,href,artists))'
     }) as SpotifyApi.SinglePlaylistResponse
-    if(!playlist){
+    if(!response){
       return
     }
-    console.log(playlist)
-    const tracks = playlist?.tracks?.items?.filter((item)=>!!item.track).map((item)=>item.track!) || []
-    console.log("tracks",tracks)
+    const tracks = response?.tracks?.items?.filter((item)=>!!item.track).map((item)=>item.track!) || []
+    setPlaylist(response)
     setTrackLists( { default: tracks})
-    console.log(trackLists['default'])
   }
 
   async function updateOrder(type: string) {
@@ -85,15 +84,20 @@ function PlaylistShuffle() {
 
   return (
     <> 
-      <button className="spotify-top-list__header" onClick={shuffle}>
-       click me!
-      </button>
+      <div className="spotify-top-lists__header">
+        {playlist &&
+        <SpotifyPlaylistCard playlist={playlist} index={-1} clicked={()=>{}}></SpotifyPlaylistCard>
+        }
+        <button className="spotify-top-lists__header--button" onClick={shuffle}>
+          do the shuffle-ing!
+        </button>
+      </div>
       <div className="spotify-top-lists">
         {/* <div> { Object.entries(next).map((entry)=> (<div>{entry}</div>)) } </div> */}
         { 
           Object.entries(trackLists).map(([type,tracks] ,index)=> (
             <div className="spotify-top-list">
-              <button className="spotify-top-list__header" onClick={() => updateOrder(type)}>
+              <button className="spotify-top-list__header button-update" onClick={() => updateOrder(type)}>
                 { type }
               </button>
               <SpotifyTrackList key={index} tracks={tracks}/>

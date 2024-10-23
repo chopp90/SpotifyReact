@@ -1,21 +1,24 @@
 
 import { useEffect, useState } from "react"
 import { SpotifyApiService } from "../services/SpotifyApiService"
-import { SpotifyPlaylistList } from "../components"
-import './TopList.scss';
+import { SpotifyPlaylistCard, SpotifyPlaylistList, SpotifyTrackList } from "../components"
+import './Playlists.scss';
 import { useInView } from "react-intersection-observer";
+import { useNavigate } from 'react-router-dom';
 
 
 function Playlists() {
   const [playlists,setPlaylists] = useState<Array<SpotifyApi.PlaylistObjectSimplified>>([])
   const [next, setNext ] = useState<string>('')
-  const [selectedPlaylist, setSelectedPlaylist] = useState<SpotifyApi.PlaylistObjectFull | undefined>(undefined)
+  const [selectedPlaylist, setSelectedPlaylist] = useState<SpotifyApi.PlaylistObjectSimplified | undefined>(undefined)
+  const [selectedPlaylistTracks, setSelectedPlaylistTracks] = useState<Array<SpotifyApi.TrackObjectFull>>([])
   const apiService = new SpotifyApiService()
+  const navigate = useNavigate();
 
-  async function onPlaylistClicked(){
-    const response = await apiService.get(playlists[0].href.split(`https://api.spotify.com/v1/`)[1]) as SpotifyApi.PlaylistObjectFull
-    setSelectedPlaylist(response)
-  }
+  // async function onPlaylistClicked(){
+  //   const response = await apiService.get(playlists[0].href.split(`https://api.spotify.com/v1/`)[1]) as SpotifyApi.PlaylistObjectFull
+  //   setSelectedPlaylist(response)
+  // }
 
   async function fetchPlaylists() {
     if(next === 'end'){
@@ -48,27 +51,46 @@ function Playlists() {
     fetchPlaylists()
   }, [inView])
 
+  async function onChildClicked(index: number) {
+    console.log("fetching playlist: ",playlists[index].href.split(`https://api.spotify.com/v1/`)[1])
+    setSelectedPlaylist(playlists[index])
+    const response = await apiService.get(playlists[index].href.split(`https://api.spotify.com/v1/`)[1] + '/tracks') as SpotifyApi.PlaylistTrackResponse
+    setSelectedPlaylistTracks(response.items.map((item)=>item.track!))
+  }
+
+  function shuffleClicked(){
+    navigate(`/playlistShuffle/${selectedPlaylist?.id}`)  
+  }
+  
+  function populateClicked(){
+    navigate(`/playlistPopulate/${selectedPlaylist?.id}`)  
+  }
+
+
   return (
     <> 
-    {/* <div className="spotify-playlists"> */}
-      <div className="spotify-playlists__header">
-        <button className="spotify-playlists__header--button" onClick={()=>onPlaylistClicked()}>
-          click me!
-        </button>        
-      </div>
+      <div className="spotify-playlists">
 
-      <div className="spotify-playlists__content">
-
-        <div className="spotify-playlists__content--lists">
-          <SpotifyPlaylistList playlists={playlists}></SpotifyPlaylistList>
-          {/* { JSON.stringify(playlists)} */}
-          {/* { playlists.map((playlist) => (
-            <div>{playlist.name}</div>
-          ))} */}
+        <div className="spotify-playlists--lists">
+          <SpotifyPlaylistList playlists={playlists} clicked={onChildClicked}></SpotifyPlaylistList>
         </div>
-        <div className="spotify-playlists__content--selected">
-          { JSON.stringify(selectedPlaylist)}
-        </div>
+        { selectedPlaylist && 
+          <div className="spotify-playlists__selected">
+            <div className="spotify-playlists__selected--header">
+              <button className="spotify-playlists__selected--button" onClick={shuffleClicked}>
+                to Shuffle
+              </button>        
+              <button className="spotify-playlists__selected--button" onClick={populateClicked}>
+                to Populate
+              </button>        
+            </div>
+            <div className="spotify-playlists__selected--list">
+              {selectedPlaylist &&<SpotifyPlaylistCard index={-1} playlist={selectedPlaylist!} clicked={()=>{}}></SpotifyPlaylistCard>}
+              <SpotifyTrackList tracks={selectedPlaylistTracks}></SpotifyTrackList>
+              { JSON.stringify(selectedPlaylist)}
+            </div>
+          </div>
+        }
       </div>
       <div ref={ref}>TODO: loading feedback... or stop indication!</div>
       
