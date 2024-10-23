@@ -77,8 +77,13 @@ function TopArtists() {
     <div className="spotify-top-lists">
       {/* <div> { Object.entries(next).map((entry)=> (<div>{entry}</div>)) } </div> */}
       { 
-        Object.values(artists).map((artistByTime,index)=> (
-          <SpotifyArtistList key={index} artists={artistByTime}/>
+        Object.entries(artists).map(([timeRange,artistByTime] ,index)=> (
+          <div className="spotify-top-list">
+            <div className="spotify-top-list__header">
+              { timeRange }
+            </div>
+            <SpotifyArtistList key={index} artists={artistByTime}/>
+          </div>
         ))
       }
     </div>

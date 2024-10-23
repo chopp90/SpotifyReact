@@ -126,7 +126,7 @@ function TopTracks() {
         ))
       }
       <div className="spotify-top-list">
-        <button className="spotify-top-list__header" onClick={makeLeftoverPlaylist}>
+        <button className="spotify-top-list__header button-create" onClick={makeLeftoverPlaylist}>
           click me!
           </button>
       <SpotifyTrackList tracks={leftoverTracks}></SpotifyTrackList>
