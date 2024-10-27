@@ -1,40 +1,20 @@
 Rough steps:
-
-# Set up basic routing/layout etc.
-# connect to spotify api.  ( Token/Auth hardcoded first?  DONT PUSH / gitignore )
-# Make types for the needed classes/types.  EG. Playlist, Account, extend Playlist with customOrder?  ==> testing @types/spotify-api for now
-# Idea for "Older Goldies Track-Finding": Remove short_term and medium_term songs from long_term and show the leftovers. Maybe remove most common recent artists?  ==> done ahead of shuffle
-# TopTracks: click modifier, simply dropdoown to toggle artist page / queue it?
-#   => left click: go to page ( same as artist ), right click: queue song into player
-Do something with expired auth token? ... get other token, first attempt is not for personal data!
-Check Login state at home and redirect if expired?
 Improve routing ( base app.tsx and headernavigation ) to read pages folder and do stuff with it automatically?
 Loading/errorstates?
-Make Service-class or something similiar to handle all the API stuff
-Make a small Artist/Track Top view profile page
-    => improve Artist: Make a button to switch between short/medium/long_term. (Cache?) Fetch more on maxScroll? 
-        => adjust layout? kind of want a proper flex again, or could keep grid but center and adjust images a bit ( right is cut off )
-Make a Song-Display Component
-Make a Playlist Component to display Song-Displays?
 Make Song-Display Drag&Drop for order in Playlist?
 Make functions to shuffle/sort/order playlist
-Make funtion to generate playlist based on songs in current playlist ( eg. top 5 + newest 2 songs for each artist that has a song in the list )
-Combine TopArtist and TopTrack somehow into a more flexible component/page with something like type: artist | track?   => alot of extra work for kind of no gain, just some thought-process!
-TopTrackList: RightClick => Queue song!
-TopArtistList: Do something with clicks? => do <a href> like tracks for nowI
-Proper Playlist select, currently playlilst_id is hardcoded. Maybe have Playlists page and route over with id param to playlistShuflePage?
 Basic Sort Methods to shuffle page? maybe think of some flexible attribute sort function instead of hardcoding them over and over.
 Figure out how to context-state-save User Object, or similiar. LocaleStorage would feel like a little cheating.
-Check out the other auth method, maybe it runs good serverless?
-    => Optional followup: Try out Github Pages or some AWS Free Plan to host webapp
-Fix popule for repeat Artists, make artist id unique somewhere.
+Fix populate for repeat Artists, make artist id unique somewhere.
 Popule: prepare for > 100 songs at 10 artists, or cut amount of songs per artist down? dynamically? max(10, 100 / artistCount )
 Add some ButtonPress Feedback, eg. song successfully queued sncakbar?
-Add colored buttons to mark when a button will try to create / update a playlist.
 Funcationlity to queuing, provide some sort of feedback is song is already queued?  Show queue somewhere? dont sent queueing if already in queue  => guess showing queue somewhere is best.
-re auth?  => might be auto-solved with other auth method. ( refresh token ) => still gotta implement some refresh token refreshing. ==> where to save it? sessionStorage? just in a variable? or just use localeStorage?  ( jsut a small hobbyproject.. so probably doesn't matter )
-=> kinda done, improve refresh, first 401 now refreshes, but is lost. Auto refresh after a bit, keep track of last call and repeat after refresh?
+improve refresh, first 401 now refreshes, but is lost. Auto refresh after a bit, keep track of last call and repeat after refresh?
 properly set unique keys. at the bare minimum the ones that don't even have an index yet.
-WIP: playlists select => move selectedPlaylist to shuffle/populate
-WIP: PlaylistCard
-Noticed: Figure out how to emit out a clickevent from PlaylistCard over PlaylistList to Playlists(page), or cheat with context/storage...
+
+Provide draggable List for playlists?
+Make Different Criterias selectable on UI instead of hardcoded?
+Wierd special Idea: Use some sort of Machine Learning to shuffle list against criterias. ( value instead of hard-no ) And progress from there!
+Do some funny Animation-stuff / slightly wierd css-stuff?
+*   Animations in general, Transitions, box-shadow?, gradient
+*   Wierd mouse-area stuff i saw in a short video somewhere?
